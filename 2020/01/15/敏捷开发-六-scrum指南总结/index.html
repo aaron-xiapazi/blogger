@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="referrer" content="never">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Scrum指南总结 | 虾爬子的Blog</title>
+  <meta name="description" content="Scrum指南总结Scrum指南概览包括了Scrum角色、事件、工件、以及把他们组织在一起的规则 Scrum的定义Scrum是一个框架。在此框架中人们可以解决复杂的自适应难题，同时高效并创造性的交付可能最高的价值 Scrum是轻量的、易于理解的、难以精通的 Scrum 理论Scrum 基于经验过程控制理论，或简言之为经验主义 经验主义主张知识源自实际经验以及当前已知情况下做出的决定所得。 Scru">
+<meta name="keywords" content="Scrum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrum指南总结">
+<meta property="og:url" content="https://createralan.github.io/2020/01/15/敏捷开发-六-scrum指南总结/index.html">
+<meta property="og:site_name" content="虾爬子的Blog">
+<meta property="og:description" content="Scrum指南总结Scrum指南概览包括了Scrum角色、事件、工件、以及把他们组织在一起的规则 Scrum的定义Scrum是一个框架。在此框架中人们可以解决复杂的自适应难题，同时高效并创造性的交付可能最高的价值 Scrum是轻量的、易于理解的、难以精通的 Scrum 理论Scrum 基于经验过程控制理论，或简言之为经验主义 经验主义主张知识源自实际经验以及当前已知情况下做出的决定所得。 Scru">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-31T05:53:05.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrum指南总结">
+<meta name="twitter:description" content="Scrum指南总结Scrum指南概览包括了Scrum角色、事件、工件、以及把他们组织在一起的规则 Scrum的定义Scrum是一个框架。在此框架中人们可以解决复杂的自适应难题，同时高效并创造性的交付可能最高的价值 Scrum是轻量的、易于理解的、难以精通的 Scrum 理论Scrum 基于经验过程控制理论，或简言之为经验主义 经验主义主张知识源自实际经验以及当前已知情况下做出的决定所得。 Scru">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://createralan.github.io/2020/01/15/敏捷开发-六-scrum指南总结/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="虾爬子的Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">佟子琦</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Life is fantastic!</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav">
+            
+            <i class="icon icon-eye-fill"></i>
+            
+            <span class="menu-title">导航</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/CreaterAlan" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://twitter.com/LaNgElmcIBFM0mY" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100024555980324" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/05/16/linux命令行-三-事件处理/" class="title">linux命令行 (三) 事件处理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-16T21:01:02.000Z" itemprop="datePublished">2020-05-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/25/JAVA编程基础-（四）-switch字符串/" class="title">JAVA编程基础 （四） switch字符串</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-25T23:30:07.000Z" itemprop="datePublished">2020-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/21/高效java-（十五）-接口优于抽象类 接口优于抽象类/" class="title">高效java （十五） 接口优于抽象类</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-21T19:07:09.000Z" itemprop="datePublished">2020-04-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/20/高效java-（十四）-如使用继承设计，应当文档说明/" class="title">高效java （十四） 如使用继承设计，应当文档说明</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-20T22:20:20.000Z" itemprop="datePublished">2020-04-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/19/高效java-（十三）-优选选择对象组合而不是继承/" class="title">高效java （十三） 优选选择对象组合而不是继承</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-19T17:27:18.000Z" itemprop="datePublished">2020-04-19</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构设计/">架构设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/研发管理/">研发管理</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitpage/">gitpage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hilens/">hilens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java性能/">java性能</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研发管理/">研发管理</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/elasticsearch/" style="font-size: 13.67px;">elasticsearch</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/gitpage/" style="font-size: 13px;">gitpage</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/hilens/" style="font-size: 13px;">hilens</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/java性能/" style="font-size: 13px;">java性能</a> <a href="/tags/linux/" style="font-size: 13px;">linux</a> <a href="/tags/搜索/" style="font-size: 13.33px;">搜索</a> <a href="/tags/研发管理/" style="font-size: 14px;">研发管理</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-敏捷开发-六-scrum指南总结" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Scrum指南总结
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/01/15/敏捷开发-六-scrum指南总结/" class="article-date">
+	  <time datetime="2020-01-15T00:00:00.000Z" itemprop="datePublished">2020-01-15</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/笔记/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Scrum/">Scrum</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/15/敏捷开发-六-scrum指南总结/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Scrum指南总结"><a href="#Scrum指南总结" class="headerlink" title="Scrum指南总结"></a>Scrum指南总结</h1><h3 id="Scrum指南概览"><a href="#Scrum指南概览" class="headerlink" title="Scrum指南概览"></a>Scrum指南概览</h3><p>包括了Scrum角色、事件、工件、以及把他们组织在一起的规则</p>
+<h3 id="Scrum的定义"><a href="#Scrum的定义" class="headerlink" title="Scrum的定义"></a>Scrum的定义</h3><p>Scrum是一个框架。在此框架中人们可以解决复杂的自适应难题，同时高效并创造性的交付可能最高的价值</p>
+<p>Scrum是轻量的、易于理解的、难以精通的</p>
+<h3 id="Scrum-理论"><a href="#Scrum-理论" class="headerlink" title="Scrum 理论"></a>Scrum 理论</h3><p>Scrum 基于经验过程控制理论，或简言之为经验主义</p>
+<p>经验主义主张知识源自实际经验以及当前已知情况下做出的决定所得。</p>
+<p>Scrum 采用增量式迭代来优化对未来的预测和控制风险</p>
+<p><strong>经验过程控制的三大支柱</strong>：</p>
+<ul>
+<li><p>透明：过程中的关键环节对于产出负责的额嗯必须是透明的。（要拥有透明，就要为关键环节制定统一标准，如参与者在过程中必须使用统一术语，对比如“完成”等定义必须有一致理解）</p>
+</li>
+<li><p>检视：Scrum的使用者必须经常检视Scrum工件和完成Sprint的进展。以便发现不必要的差异。检视不应该过于繁琐而影响本身所以检视最好由技能娴熟的成员执行</p>
+</li>
+<li>适应：如果检视者发现过程中一个或多个方面偏离可接受范围。必须对过程的内容加以调整，调整到最小化进一步的偏差</li>
+</ul>
+<p>Scrum的<strong>正式事件</strong>，用于检视与适应：</p>
+<ul>
+<li>Sprint 计划会议</li>
+<li>每日Scrum站会</li>
+<li>Sprint评审会议</li>
+<li>Sprint回顾会议</li>
+</ul>
+<h3 id="Scrum价值观"><a href="#Scrum价值观" class="headerlink" title="Scrum价值观"></a>Scrum价值观</h3><ul>
+<li>承诺</li>
+<li>勇气</li>
+<li>专注</li>
+<li>开放</li>
+<li>尊重</li>
+</ul>
+<p>当5个价值观为官推所践行与内化，透明、检视、适应三大支柱成为现实</p>
+<p>人们致力于实现Scrum团队的目标。Scrum团队成员有勇气去做正确的事并处理那些棘手的问题，每个人专注于Sprint的工作和Scrum团队的目标。Scrum团队及利益攸关者同意将所有工作和执行工作上的挑战进行公开。Scrum团队成员相互尊重，彼此是有能力和独立的人。</p>
+<h3 id="Scrum团队"><a href="#Scrum团队" class="headerlink" title="Scrum团队"></a>Scrum团队</h3><p>一名产品负责人+Scrum Master（敏捷教练）+开发团队</p>
+<p>Scrum团队是跨职能的自组织团队。跨职能团队用为完成工作所需的全部技能</p>
+<p>自组织团队自己选择如何以最好的方式完成工作，而不是由团队之外的人来指导</p>
+<ul>
+<li><p>产品负责人</p>
+<p>其职能是将开发团队的产品价值最大化。产品负责人是负责管理产品待办列表的唯一负责人</p>
+<p>产品代办列表包括</p>
+<ol>
+<li>清晰地表述产品代办列表项</li>
+<li>对产品代办列表进行排序，使其最好地实现目标</li>
+<li>优化开发团队所执行工作的价值</li>
+<li>保证列表对所有人可见，透明、清晰。同事显示Scrum团队下一步要做的工作</li>
+<li>确保开发团队对产品待办列表项有足够深的了解</li>
+</ol>
+<p>注意：产品负责人是一个人，不是一个委员会。想要改变产品的代办列表项的优先级必须经过产品负责人。组织中所有人员必须尊重他/她的决定</p>
+</li>
+<li><p>开发团队</p>
+</li>
+<li><p>Scrum Master</p>
+</li>
+</ul>
+<h3 id="Scrum事件"><a href="#Scrum事件" class="headerlink" title="Scrum事件"></a>Scrum事件</h3><ul>
+<li><p>Sprint</p>
+<p>每个Sprint都可以被视为一个项目，为期不超过一个月。就如同项目一样，Sprint被用于完成某些事情。每个Sprint都会有一个要构建什么的目标。还有一份设计过和灵活的计划用来指导如何做这件事</p>
+<p>在Sprint期间：</p>
+<ol>
+<li>不能做出有害于Sprint目标的改变。</li>
+<li>不能降低质量的目标</li>
+<li>随着对信息掌握的增加，产品负责人与开发团队之间对范围内要做的事可以加以澄清和重新协商</li>
+</ol>
+</li>
+<li><p>Sprint计划会议</p>
+<p>Sprint计划回忆回答一下两个问题：</p>
+<ol>
+<li><p>这次Sprint能做什么？</p>
+<p>产品负责人讲解Sprint的目标以及达成该目标所需完成的产品代办列表项。整个Scrum团队协同工作来理解Sprint的工作。Sprint会议的输入时产品待办列表、最新的产品增量、开发团队在这个Sprint中的能力预测以及开发团队的以往表现。开发团队自己决定选择产品待办列表的数量。只有开发团队可以评估接下来Sprint可以完成什么工作。</p>
+</li>
+<li><p>如何完成所选的工作？</p>
+<p>设定了Sprint目标并选出这个Sprint要完成的产品代办列表项之后。开发团队奖决定如何在Sprint中把这些功能构建成“完成”的产品增量。这个Sprint中所炫出的产品代办列表项加上如何交付他们的设计成为Sprint待办列表</p>
+</li>
+</ol>
+</li>
+<li><p>Scrum站会</p>
+<p>站会是开发团队的一个时间盒设定为15分钟的时间。每日的Scrum站会都在Sprint的每一天举行。站会上开发团队为杰西莱的24小时的工作制定计划。通过检视上次每日Scrum站会依赖的工作和预测即将到来的Sprint工作来优化团队协作和效能。</p>
+<p>以下是一个可以使用的范例：</p>
+<ol>
+<li>昨天，我为帮助开发团队达成Sprint目标做了什么?</li>
+<li>今天，我为帮助开发团队达成Sprint目标准备做什么？</li>
+<li>是否有任何障碍在阻碍我或开发团队达成Sprint目标？</li>
+</ol>
+</li>
+<li><p>Sprint评审会议</p>
+<p>对弈长度为一个月的Sprint来说，评审会议时间最长不超过4小时。</p>
+<p>对于较短的Sprint来说，会议时间通常会缩短。</p>
+<p>评审会议包含以下内容</p>
+<ol>
+<li>参会者包括Scrum团队和产品负责人邀请的主要利益攸关者</li>
+<li>产品负责人说明那些产品待办项已经“完成”和那些没有“完成”</li>
+<li>开发团队讨论在Sprint期间那些工作做得好，遭遇到什么问题，是如何解决的</li>
+<li>开发团队演示“完成”的工作并解答关于所交付增量的问题</li>
+<li>产品负责人讨论当前的<strong>产品待办列表</strong>的情况。跟库目前为止的进度来预测可能得目标交付日期</li>
+<li>参会的所有人就下一步的工作进行讨论。这样就能为接下来的Sprint计划回忆提供有价值的输入信息</li>
+<li>评审市场或潜在的产品使用方式所带来的接下来的做的最有价值的东西的改变</li>
+</ol>
+<p>评审会议的结果是一份修订后的产品待办列表，阐明很可能进入下个Sprint的产品代办列表项</p>
+</li>
+<li><p>Sprint回顾会议</p>
+<p>Sprint 回顾会议是 Scrum 团队检视自身并创建下一个 Sprint 改进计划的机会。 </p>
+<p>回顾会议发生在 Sprint 评审会议结束之后，下个 Sprint 计划会议之前。对于长度为一个 </p>
+<p>月的 Sprint 来说，回顾会议时间最长不超过 3 小时。对于较短的 Sprint 来说，会议时 </p>
+<p>间通常会缩短。Scrum Master 要确保会议举行，并且每个参会者都明白会议的目的。 </p>
+<p>Scrum Master 确保会议是积极的和富有成效的。 Scrum Master 教导大家遵守时间盒的规 </p>
+<p>则。Scrum Master 对 Scrum 过程负责，作为团队的一员参加该会议。 </p>
+<p>Sprint 回顾会议的目的在于： </p>
+<ol>
+<li><p>检视前一个 Sprint 中关于人、关系、过程和工具的情况如何； </p>
+</li>
+<li><p>找出并加以排序做得好的和潜在需要改进的主要方面； 同时， </p>
+</li>
+<li><p>制定改进 Scrum 团队工作方式的计划。 </p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Scrum工件"><a href="#Scrum工件" class="headerlink" title="Scrum工件"></a>Scrum工件</h3><p>Scrum的工件以不同的方式表现工作的任务和价值，可以用来提供透明以及检视和适合的机会</p>
+<p>Scrum依赖于透明。优化价值和控制风险的决定都是局域所获知的工件状态。当工件的状态是完全透明时。这些做出的决定才有一个坚实的基础。</p>
+<h3 id="“完成”的定义"><a href="#“完成”的定义" class="headerlink" title="“完成”的定义"></a>“完成”的定义</h3><p>当产品待办列表项或增量被描述为“完成”时，每个人都必须理解“完成”意味着什么。虽然 </p>
+<p>在不同 Scrum 团队之间或许会存在显著差异，但是每个团队成员必须对完成工作意味着什 </p>
+<p>么有相同的理解以便确保透明化。这就是 Scrum 团队的“完成”定义，用来评估产品增量 </p>
+<p>是否完成。 </p>
+<p>这一定义也同时被用来指导开发团队了解在 Sprint 计划会议时能够选择多少产品待办列表 </p>
+<p>项。每个 Sprint 的目标在于交付符合 Scrum 团队当前“完成”的定义的潜在可交付功能 </p>
+<p>增量。 </p>
+<p>开发团队在每个 Sprint 都交付产品功能增量。这一增量是可用的，所以产品负责人可以 </p>
+<p>选择立即发布它。如果“完成”的定义对增量来说<strong>是</strong>开发组织的惯例、标准或指南，那么所 </p>
+<p>有 Scrum 团队都必须遵守它，以此为最低标准。 </p>
+<p>如果增量“完成”的定义<strong>不是</strong>开发组织的惯例，那么 Scrum 团队中的开发团队就必须制定 </p>
+<p>适合于产品的“完成”的定义。如果系统或产品发布由多个 Scrum 团队一起开发，那么所 </p>
+<p>有 Scrum 团队中的开发团队必须一起参与制定“完成”的定义。 </p>
+<p>每个增量都添加至之前的所有增量上，并且经过彻底地测试，以此确保整合在一起的所有 </p>
+<p>增量都能工作。 </p>
+<p>随着 Scrum 团队的成熟，“完成”的定义会扩大，包含更为严格的标准来保证更高的质 </p>
+<p>量。当使用新定义时，在先前“完成”增量中可能会发现尚需完成的工作。任何产品或系 </p>
+<p>统都应该对其上面开发的工作有“完成”的定义。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://createralan.github.io/2020/01/15/敏捷开发-六-scrum指南总结/" title="Scrum指南总结" target="_blank" rel="external">https://createralan.github.io/2020/01/15/敏捷开发-六-scrum指南总结/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">佟子琦</span><small class="ml-1x">Life is fantastic!</small></a></h3>
+        <div>让我们结伴而行，去北方南方西方。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      
+
+    
+   
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/01/19/git-二-git标签、Stash管理/" title="git (二) git标签、Stash管理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/01/12/git-一-基础操作/" title="git (一) 基础操作"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/CreaterAlan" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://twitter.com/LaNgElmcIBFM0mY" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100024555980324" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 Tongziqi
+        
+        <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+    </div>
+</footer>
+  <!-- <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+    <!-- <link href="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js"></script> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.js"></script>
+    <script>
+        //利用 FancyBox 实现点击图片放大
+        $(document).ready(function() {
+            $('article img').not('[hidden]').not('.panel-body img').each(function () {
+                var $image = $(this);
+                var imageCaption = $image.attr('alt');
+                var $imageWrapLink = $image.parent('a');
+                if ($imageWrapLink.length < 1) {
+                var src = this.getAttribute('src');
+                var idx = src.lastIndexOf('?');
+                if (idx != -1) {
+                    src = src.substring(0, idx);
+                }
+                $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+                }
+                $imageWrapLink.attr('data-fancybox', 'images');
+                if (imageCaption) {
+                $imageWrapLink.attr('data-caption', imageCaption);
+                }
+            });
+            $().fancybox({
+                selector: '[data-fancybox="images"]',
+                hash: false,
+                loop: false,
+            }); 
+        });
+    </script>
+    
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: 'f7f6c1489f7b9577695a',
+            clientSecret: 'b019b16cf5d3a51b41d175a5b786e5f3bba3bf0a',
+            repo: 'CreaterAlan.github.io',
+            owner: 'CreaterAlan',
+            admin: ['CreaterAlan'],
+            id: md5(location.pathname),
+            distractionFreeMode: true
+        })
+        gitalk.render('comments')
+    </script>
+    
+
+    
+    
+
+
+
+</body>
+</html>

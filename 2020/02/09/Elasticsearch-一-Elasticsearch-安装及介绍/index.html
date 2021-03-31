@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="referrer" content="never">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Elasticsearch (一) Elasticsearch 安装及介绍 | 虾爬子的Blog</title>
+  <meta name="description" content="Elasticsearch 实现多字段高亮检索、文件检索、数据同步Elasticsearch知识： ES概述简介 Elasticsearch是一个分布式的基于REST接口的为云而设计的搜索引擎。 Elasticsearch不仅仅是Lucene和全文搜索引擎，它还提供：  分布式的实时文件存储，每个字段都被索引并可被搜索 实时分析的分布式搜索引擎 可以扩展到上百台服务器，处理PB级结构化或非结构化数">
+<meta name="keywords" content="elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch (一) Elasticsearch 安装及介绍">
+<meta property="og:url" content="https://createralan.github.io/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/index.html">
+<meta property="og:site_name" content="虾爬子的Blog">
+<meta property="og:description" content="Elasticsearch 实现多字段高亮检索、文件检索、数据同步Elasticsearch知识： ES概述简介 Elasticsearch是一个分布式的基于REST接口的为云而设计的搜索引擎。 Elasticsearch不仅仅是Lucene和全文搜索引擎，它还提供：  分布式的实时文件存储，每个字段都被索引并可被搜索 实时分析的分布式搜索引擎 可以扩展到上百台服务器，处理PB级结构化或非结构化数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-03-31T05:53:05.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch (一) Elasticsearch 安装及介绍">
+<meta name="twitter:description" content="Elasticsearch 实现多字段高亮检索、文件检索、数据同步Elasticsearch知识： ES概述简介 Elasticsearch是一个分布式的基于REST接口的为云而设计的搜索引擎。 Elasticsearch不仅仅是Lucene和全文搜索引擎，它还提供：  分布式的实时文件存储，每个字段都被索引并可被搜索 实时分析的分布式搜索引擎 可以扩展到上百台服务器，处理PB级结构化或非结构化数">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://createralan.github.io/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="虾爬子的Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">佟子琦</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Life is fantastic!</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-nav">
+          <a href="/nav">
+            
+            <i class="icon icon-eye-fill"></i>
+            
+            <span class="menu-title">导航</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/CreaterAlan" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://twitter.com/LaNgElmcIBFM0mY" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100024555980324" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/05/16/linux命令行-三-事件处理/" class="title">linux命令行 (三) 事件处理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-16T21:01:02.000Z" itemprop="datePublished">2020-05-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/25/JAVA编程基础-（四）-switch字符串/" class="title">JAVA编程基础 （四） switch字符串</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-25T23:30:07.000Z" itemprop="datePublished">2020-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/21/高效java-（十五）-接口优于抽象类 接口优于抽象类/" class="title">高效java （十五） 接口优于抽象类</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-21T19:07:09.000Z" itemprop="datePublished">2020-04-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/20/高效java-（十四）-如使用继承设计，应当文档说明/" class="title">高效java （十四） 如使用继承设计，应当文档说明</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-20T22:20:20.000Z" itemprop="datePublished">2020-04-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/04/19/高效java-（十三）-优选选择对象组合而不是继承/" class="title">高效java （十三） 优选选择对象组合而不是继承</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-04-19T17:27:18.000Z" itemprop="datePublished">2020-04-19</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构设计/">架构设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/研发管理/">研发管理</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitpage/">gitpage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hilens/">hilens</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java性能/">java性能</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研发管理/">研发管理</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/elasticsearch/" style="font-size: 13.67px;">elasticsearch</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/gitpage/" style="font-size: 13px;">gitpage</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/hilens/" style="font-size: 13px;">hilens</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/java性能/" style="font-size: 13px;">java性能</a> <a href="/tags/linux/" style="font-size: 13px;">linux</a> <a href="/tags/搜索/" style="font-size: 13.33px;">搜索</a> <a href="/tags/研发管理/" style="font-size: 14px;">研发管理</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Elasticsearch-一-Elasticsearch-安装及介绍" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Elasticsearch (一) Elasticsearch 安装及介绍
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/" class="article-date">
+	  <time datetime="2020-02-09T00:00:00.000Z" itemprop="datePublished">2020-02-09</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/笔记/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/elasticsearch/">elasticsearch</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="Elasticsearch-实现多字段高亮检索、文件检索、数据同步"><a href="#Elasticsearch-实现多字段高亮检索、文件检索、数据同步" class="headerlink" title="Elasticsearch 实现多字段高亮检索、文件检索、数据同步"></a>Elasticsearch 实现多字段高亮检索、文件检索、数据同步</h2><h3 id="Elasticsearch知识："><a href="#Elasticsearch知识：" class="headerlink" title="Elasticsearch知识："></a>Elasticsearch知识：</h3><ul>
+<li><p><strong>ES概述简介</strong></p>
+<p><em>Elasticsearch是一个分布式的基于REST接口的为云而设计的搜索引擎。</em></p>
+<p>Elasticsearch不仅仅是Lucene和全文搜索引擎，它还提供：</p>
+<ul>
+<li>分布式的实时文件存储，每个字段都被索引并可被搜索</li>
+<li>实时分析的分布式搜索引擎</li>
+<li>可以扩展到上百台服务器，处理PB级结构化或非结构化数据</li>
+</ul>
+<p>为什么选择ES做搜索引擎：</p>
+<ul>
+<li>很简便的横向扩容，既能由数百台到万台机器搭建满足PB级的快速搜索，也能搭建单机版服务小公司。</li>
+<li>功能点多但使用比较简便，开箱即用，性能优化比较简单</li>
+<li>生态圈丰富，社区活跃，apache 2.0开源。适配多种工具。提供java api和restful接口，ELK架构处理海量日志，丰富的插件(分词器、search-gurad等安全插件)</li>
+</ul>
+</li>
+<li><p><strong>ES 相关术语概念</strong></p>
+<ol>
+<li><p><strong>Cluster</strong>:Cluster也就是集群的意思。Elasticsearch集群由一个或多个节点组成，可通过其集群名称进行标识。通常这个Cluster 的名字是可以在Elasticsearch里的配置文件中设置的。</p>
+</li>
+<li><p><strong>node</strong>:单个Elasticsearch实例。 在大多数环境中，每个节点都在单独的盒子或虚拟机上运行。一个集群由一个或多个node组成。</p>
+</li>
+<li><p><strong>Document</strong>:Elasticsearch是面向文档的，这意味着您索引或搜索的最小数据单元是文档。</p>
+</li>
+<li><p><strong>type</strong>:类型是文档的逻辑容器，类似于表是行的容器。 </p>
+</li>
+<li><p><strong>index</strong>  :在Elasticsearch中，索引是文档的集合。</p>
+</li>
+<li><p><strong>shard</strong> :由于Elasticsearch是一个分布式搜索引擎，因此索引通常会拆分为分布在多个节点上的称为分片的元素。</p>
+</li>
+<li><p><strong>replica</strong> :默认情况下，Elasticsearch为每个索引创建一个主分片和一个副本。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="ES-DEMO"><a href="#ES-DEMO" class="headerlink" title="ES DEMO"></a>ES DEMO</h3><p><em>说明：此例适用于elasticsearch6.4.3，其他版本尚未测试</em></p>
+<ol>
+<li><p><strong>实现目标：</strong></p>
+<ul>
+<li>针对于文档的标题，内容及相关属性（如标签、时间），提供输入关键字即可搜索的能力</li>
+<li>关键字在搜索结果中高亮显示</li>
+<li>搜索功能实现对于文件的检索，如word、pdf等。（使用Ingest Attachment Processor）</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>ES索引中的文档与mysql数据库中的数据同步（使用logstash）</li>
+</ul>
+<ol start="2">
+<li><p><strong>环境要求：</strong></p>
+<ul>
+<li><p>elasticsearch 6.4.3</p>
+<p>es下载地址：<a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-4-3" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-4-3</a></p>
+<p>安装指导：<a href="https://blog.csdn.net/art_code/article/details/90499981" target="_blank" rel="noopener">https://blog.csdn.net/art_code/article/details/90499981</a></p>
+</li>
+<li><p>ik分词器6.4.3</p>
+<p><em>PS：为什么选择IK分词器？支持中文；功能强大；开源；仍被维护。</em></p>
+<p>ik下载地址：<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.4.3/elasticsearch-analysis-ik-6.4.3.zip" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.4.3/elasticsearch-analysis-ik-6.4.3.zip</a></p>
+<p>安装指导：<a href="https://www.cnblogs.com/chenmc/p/9525163.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenmc/p/9525163.html</a></p>
+</li>
+<li><p>其他工具：Ingest Attachment Processor、logstash</p>
+</li>
+</ul>
+</li>
+<li><p><strong>工具类的使用：</strong></p>
+</li>
+</ol>
+<p>对比开源的相关es搜索工具类（如Bboss，elasticsearch-RHL等）且</p>
+<p>根据项目需求（检索条件不复杂，仅针对于文档）。认为spring-boot-starter-data-elasticsearch（可认为spring-data官方的工具类）较适合于目前知识库的elasticsearch工具类选用。maven工程中pom文件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><strong>工具类的API使用概述及配置（详情见DEMO）</strong></li>
+</ol>
+<p>appliction.properties参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## Elasticsearch配置文件（必须）</span><br><span class="line">## 该配置和Elasticsearch的elasticsearch.yml中的配置信息有关</span><br><span class="line">spring.data.elasticsearch.cluster-name=my-application</span><br><span class="line">spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300</span><br></pre></td></tr></table></figure>
+<p>创建接口继承ElasticsearchRepository，其中<demo>为自定义的实体类</demo></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface DemoRepository extends ElasticsearchRepository&lt;Demo,Long&gt; &#123;</span><br></pre></td></tr></table></figure>
+<p>在实现类中，使用根据自定义实体类创建好的接口及ES的模板类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private ItemRepository itemRepository;</span><br><span class="line">@Autowired</span><br><span class="line">private ElasticsearchTemplate elasticsearchTemplate;</span><br><span class="line">...(具体操作见DEMO代码)</span><br></pre></td></tr></table></figure>
+<p>​      GitHub仓库地址：</p>
+<ol start="5">
+<li><p><strong>文件检索的实现</strong></p>
+<p>ingest attachment plugin允许Elasticsearch通过使用Apache文本提取库Tika提取通用格式（例如PPT，XLS和PDF）的文件附件。 Apache Tika工具包可从一千多种不同的文件类型（例如PPT，XLS和PDF）中检测并提取元数据和文本。 所有这些文件类型都可以通过一个界面进行解析，从而使Tika对搜索引擎索引，内容分析，翻译等有用。</p>
+<p>源字段必须是base64编码的二进制。 </p>
+<ul>
+<li><p><strong>创建attachment pipeline</strong></p>
+<p>我们可以在我们的Ingest node上创建一个叫做pdfattachment的pipleline:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PUT _ingest/pipeline/pdfattachment</span><br><span class="line">&#123;</span><br><span class="line">  &quot;description&quot;: &quot;Extract attachment information encoded in Base64 with UTF-8 charset&quot;,</span><br><span class="line">  &quot;processors&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;attachment&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;file&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p><strong>转换pdf文件并上传pdf文件的内容到Elasticsearch中</strong></p>
+<p>对于ingest attachment plugin来说，它的数据必须是Base64的。我们可以在网站<a href="https://www.giftofspeed.com/base64-encoder/" target="_blank" rel="noopener">Base64 encoder</a>来进行转换。针对我们的情况，我们直接通过脚本的方法来进行操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">encodedPdf=`cat sample.pdf | base64`</span><br><span class="line">json=&quot;&#123;\&quot;file\&quot;:\&quot;$&#123;encodedPdf&#125;\&quot;&#125;&quot;</span><br><span class="line">echo &quot;$json&quot; &gt; json.file</span><br><span class="line">curl -XPOST &apos;http://localhost:9200/pdf-test1/_doc?pipeline=pdfattachment&amp;pretty&apos; -H &apos;Content-Type: application/json&apos; -d @json.file</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="6">
+<li><p><strong>数据同步的实现</strong></p>
+<p><strong>需满足条件</strong></p>
+<ul>
+<li>在将 MySQL 中的文档写入 Elasticsearch 时，Elasticsearch 中的 “_id” 字段必须设置为 MySQL 中的 “id” 字段。这可在 MySQL 记录与 Elasticsearch 文档之间建立一个直接映射关系。如果在 MySQL 中更新了某条记录，那么将会在 Elasticsearch 中覆盖整条相关记录。请注意，在 Elasticsearch 中覆盖文档的效率与<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.7/getting-started-update-documents.html" target="_blank" rel="noopener">更新操作</a>的效率一样高，因为从内部原理上来讲，更新便包括删除旧文档以及随后对全新文档进行索引。</li>
+<li>当在 MySQL 中插入或更新数据时，该条记录必须有一个包含更新或插入时间的字段。通过此字段，便可允许 Logstash 仅请求获得在轮询循环的上次迭代后编辑或插入的文档。Logstash 每次对 MySQL 进行轮询时，都会保存其从 MySQL 所读取最后一条记录的更新或插入时间。在下一次迭代时，Logstash 便知道其仅需请求获得符合下列条件的记录：更新或插入时间晚于在轮询循环中的上一次迭代中所收到的最后一条记录。</li>
+</ul>
+<p><strong>Logstash通过管道同步数据：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  jdbc &#123;</span><br><span class="line">    jdbc_driver_library =&gt; &quot;&lt;path&gt;/mysql-connector-java-8.0.16.jar&quot;</span><br><span class="line">    jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</span><br><span class="line">    jdbc_connection_string =&gt; &quot;jdbc:mysql://&lt;MySQL host&gt;:3306/es_db&quot;</span><br><span class="line">    jdbc_user =&gt; &lt;my username&gt;</span><br><span class="line">    jdbc_password =&gt; &lt;my password&gt;</span><br><span class="line">    jdbc_paging_enabled =&gt; true</span><br><span class="line">    tracking_column =&gt; &quot;unix_ts_in_secs&quot;</span><br><span class="line">    use_column_value =&gt; true</span><br><span class="line">    tracking_column_type =&gt; &quot;numeric&quot;</span><br><span class="line">    schedule =&gt; &quot;*/5 * * * * *&quot;</span><br><span class="line">    statement =&gt; &quot;SELECT *, UNIX_TIMESTAMP(modification_time) AS unix_ts_in_secs FROM es_table WHERE (UNIX_TIMESTAMP(modification_time) &gt; :sql_last_value AND modification_time &lt; NOW()) ORDER BY modification_time ASC&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  mutate &#123;</span><br><span class="line">    copy =&gt; &#123; &quot;id&quot; =&gt; &quot;[@metadata][_id]&quot;&#125;</span><br><span class="line">    remove_field =&gt; [&quot;id&quot;, &quot;@version&quot;, &quot;unix_ts_in_secs&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">  # stdout &#123; codec =&gt;  &quot;rubydebug&quot;&#125;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">      index =&gt; &quot;rdbms_sync_idx&quot;</span><br><span class="line">      document_id =&gt; &quot;%&#123;[@metadata][_id]&#125;&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>参考文档:</p>
+<ol>
+<li><a href="https://elasticstack.blog.csdn.net/article/details/99443042" target="_blank" rel="noopener">https://elasticstack.blog.csdn.net/article/details/99443042</a>      （基础概念）</li>
+<li><a href="https://elasticstack.blog.csdn.net/article/details/102728604" target="_blank" rel="noopener">https://elasticstack.blog.csdn.net/article/details/102728604</a>    （入门指南）</li>
+<li><a href="https://elasticstack.blog.csdn.net/article/details/99413578" target="_blank" rel="noopener">https://elasticstack.blog.csdn.net/article/details/99413578</a>         (安装文档)</li>
+<li><a href="https://elasticstack.blog.csdn.net/article/details/104171230" target="_blank" rel="noopener">https://elasticstack.blog.csdn.net/article/details/104171230</a>     （对文档搜索）</li>
+<li><a href="https://elasticstack.blog.csdn.net/article/details/103874185" target="_blank" rel="noopener">https://elasticstack.blog.csdn.net/article/details/103874185</a>     （数据同步）</li>
+</ol>
+<p><a href="https://github.com/CreaterAlan/elasticsearch-demo" target="_blank" rel="noopener">示例代码</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://createralan.github.io/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/" title="Elasticsearch (一) Elasticsearch 安装及介绍" target="_blank" rel="external">https://createralan.github.io/2020/02/09/Elasticsearch-一-Elasticsearch-安装及介绍/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">佟子琦</span><small class="ml-1x">Life is fantastic!</small></a></h3>
+        <div>让我们结伴而行，去北方南方西方。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      
+
+    
+   
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/02/15/网络知识-（一）-NS-DNS-网关/" title="网络知识 （一）NS,DNS,网关"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/01/19/git-二-git标签、Stash管理/" title="git (二) git标签、Stash管理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/CreaterAlan" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://twitter.com/LaNgElmcIBFM0mY" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100024555980324" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 Tongziqi
+        
+        <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+    </div>
+</footer>
+  <!-- <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+    <!-- <link href="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js"></script> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.js"></script>
+    <script>
+        //利用 FancyBox 实现点击图片放大
+        $(document).ready(function() {
+            $('article img').not('[hidden]').not('.panel-body img').each(function () {
+                var $image = $(this);
+                var imageCaption = $image.attr('alt');
+                var $imageWrapLink = $image.parent('a');
+                if ($imageWrapLink.length < 1) {
+                var src = this.getAttribute('src');
+                var idx = src.lastIndexOf('?');
+                if (idx != -1) {
+                    src = src.substring(0, idx);
+                }
+                $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+                }
+                $imageWrapLink.attr('data-fancybox', 'images');
+                if (imageCaption) {
+                $imageWrapLink.attr('data-caption', imageCaption);
+                }
+            });
+            $().fancybox({
+                selector: '[data-fancybox="images"]',
+                hash: false,
+                loop: false,
+            }); 
+        });
+    </script>
+    
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: 'f7f6c1489f7b9577695a',
+            clientSecret: 'b019b16cf5d3a51b41d175a5b786e5f3bba3bf0a',
+            repo: 'CreaterAlan.github.io',
+            owner: 'CreaterAlan',
+            admin: ['CreaterAlan'],
+            id: md5(location.pathname),
+            distractionFreeMode: true
+        })
+        gitalk.render('comments')
+    </script>
+    
+
+    
+    
+
+
+
+</body>
+</html>
